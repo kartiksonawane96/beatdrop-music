@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b0b0f">
+<title>BeatDrop — Music Link Hub</title>
+<style>
+:root{--bg:#090a0d;--panel:#14161c;--panel2:#1b1e26;--text:#f5f7fa;--muted:#a4a9b5;--green:#1ed760;--line:#2b303b;--pink:#c084fc}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#17271e 0%,transparent 35%),radial-gradient(ellipse at 90% 20%,#24172f 0%,transparent 28%),var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--text);min-height:100vh}
+.wrap{max-width:1050px;margin:auto;padding:24px 18px 56px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:8px 0 60px}.brand{display:flex;align-items:center;gap:10px;font-weight:850;font-size:21px;letter-spacing:-.5px}.logo{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--green);color:#07130b;font-size:21px;box-shadow:0 8px 25px #1ed76030}.pill{font-size:12px;border:1px solid var(--line);border-radius:99px;padding:8px 12px;color:var(--muted)}
+.hero{text-align:center;max-width:760px;margin:0 auto 35px}.eyebrow{display:inline-flex;gap:8px;align-items:center;color:var(--green);font-size:12px;font-weight:800;letter-spacing:1.7px;text-transform:uppercase}.dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}h1{font-size:clamp(38px,7vw,68px);line-height:1.02;letter-spacing:-2.7px;margin:18px 0 18px}.gradient{background:linear-gradient(90deg,#1ed760,#7df0a4,#c084fc);color:transparent;background-clip:text}.hero p{color:var(--muted);font-size:16px;line-height:1.7;margin:0 auto;max-width:610px}
+.grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:start}.card{background:linear-gradient(160deg,#171a21ed,#101217f2);border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:0 20px 60px #0003}.card h2{font-size:19px;margin:0 0 7px;letter-spacing:-.4px}.sub{font-size:13px;color:var(--muted);line-height:1.55;margin:0 0 20px}.label{display:block;font-size:12px;font-weight:750;color:#dfe3e9;margin:18px 0 9px}.inputrow{display:flex;gap:8px}.field{width:100%;min-width:0;background:#0b0d12;border:1px solid #343a47;border-radius:12px;padding:14px;color:var(--text);font-size:14px;outline:none}.field:focus{border-color:var(--green);box-shadow:0 0 0 3px #1ed76016}.btn{border:0;border-radius:12px;padding:13px 16px;font-weight:800;cursor:pointer;white-space:nowrap;transition:transform .15s,filter .15s}.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}.primary{background:var(--green);color:#07130b}.secondary{background:#262b35;color:#f6f7f8;border:1px solid #3b414e}.full{width:100%;margin-top:12px}.hint{font-size:11px;line-height:1.6;color:#9299a7;margin-top:10px}.status{font-size:13px;line-height:1.5;color:var(--muted);margin-top:12px;min-height:18px}.embed{margin-top:18px;display:none}.embed iframe{width:100%;height:152px;border:0;border-radius:12px}.feature{display:flex;gap:13px;align-items:flex-start;padding:13px 0;border-bottom:1px solid #282d37}.feature:last-child{border-bottom:0;padding-bottom:0}.ico{width:38px;height:38px;flex:0 0 38px;border-radius:12px;background:#20262c;display:grid;place-items:center;font-size:18px}.feature strong{display:block;font-size:13px;margin:2px 0 5px}.feature span{font-size:12px;line-height:1.55;color:var(--muted);display:block}.notice{border:1px solid #51402b;background:#211b13;border-radius:13px;padding:13px 14px;margin-top:18px;color:#e9d4ad;font-size:12px;line-height:1.6}.footer{text-align:center;color:#727987;font-size:12px;line-height:1.7;margin-top:30px}.footer a{color:#b5bdca}.tiny{font-size:11px;color:#858c99;margin-top:8px}
+@media(max-width:760px){.top{margin-bottom:40px}.grid{grid-template-columns:1fr}.card{padding:20px}h1{letter-spacing:-1.7px}.pill{display:none}.inputrow{flex-direction:column}.inputrow .btn{width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><div class="brand"><div class="logo">♫</div><span>BeatDrop</span></div><div class="pill">MUSIC LINK HUB · BETA</div></header>
+<section class="hero"><div class="eyebrow"><span class="dot"></span> Your music, one simple place</div><h1>Drop a link.<br><span class="gradient">Find your beat.</span></h1><p>Preview Spotify tracks and download audio files when you have a direct, authorized download link. Simple, fast, and made for mobile.</p></section>
+<main class="grid">
+<section class="card">
+<h2>🎧 Spotify track preview</h2><p class="sub">Paste a Spotify track link to open its official preview player.</p>
+<label class="label" for="spotify">Spotify song URL</label>
+<div class="inputrow"><input id="spotify" class="field" type="url" placeholder="https://open.spotify.com/track/…" autocomplete="url"><button class="btn primary" id="previewBtn">Preview</button></div>
+<div class="status" id="spotifyStatus" aria-live="polite">Works with Spotify track links.</div>
+<div class="embed" id="embedBox"><iframe id="spotifyFrame" title="Spotify track preview" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+<button class="btn secondary full" id="openSpotify" style="display:none">Open in Spotify ↗</button>
+<div class="notice">Spotify links are for preview and listening. This website does not rip or convert Spotify streams into MP3 files.</div>
+</section>
+<section class="card">
+<h2>⬇️ Direct audio download</h2><p class="sub">Use a direct audio-file URL that the owner has made available for download.</p>
+<label class="label" for="audioUrl">Authorized audio file URL</label>
+<input id="audioUrl" class="field" type="url" placeholder="https://example.com/my-track.mp3" autocomplete="url">
+<label class="label" for="filename">Save as (optional)</label><input id="filename" class="field" type="text" placeholder="my-track.mp3">
+<button class="btn primary full" id="downloadBtn">Download audio ↓</button>
+<div class="status" id="downloadStatus" aria-live="polite">MP3, WAV, OGG and other browser-supported files may work.</div>
+<p class="hint">Download behavior depends on the host website. Some servers open the file in a new tab instead; this page cannot bypass site restrictions.</p>
+</section>
+</main>
+<section class="card" style="margin-top:18px">
+<h2>✨ Built for the essentials</h2>
+<div class="feature"><div class="ico">🔗</div><div><strong>Quick link handling</strong><span>Recognizes standard Spotify track URLs and creates an embedded preview.</span></div></div>
+<div class="feature"><div class="ico">📲</div><div><strong>Mobile-first design</strong><span>Responsive layout designed to feel good on phones, tablets, and desktop screens.</span></div></div>
+<div class="feature"><div class="ico">🛡️</div><div><strong>Respect creators</strong><span>Only download files you own or are authorized to save. Spotify playback remains on Spotify’s official player.</span></div></div>
+</section>
+<footer class="footer">BeatDrop is an independent demo and is not affiliated with Spotify.<br>Spotify is a trademark of Spotify AB. Use audio downloads only when you have permission.</footer>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+function parseSpotifyTrack(raw){
+  try{
+    const u = new URL(raw.trim());
+    if(!['open.spotify.com','www.open.spotify.com','spotify.link'].includes(u.hostname)) return null;
+    const m = u.pathname.match(/\/track\/([A-Za-z0-9]+)/);
+    return m ? m[1] : null;
+  }catch(e){return null;}
+}
+function preview(){
+ const raw=$('spotify').value.trim(), id=parseSpotifyTrack(raw);
+ $('embedBox').style.display='none'; $('openSpotify').style.display='none'; $('spotifyFrame').src='';
+ if(!raw){$('spotifyStatus').textContent='Paste a Spotify track URL first.';return;}
+ if(!id){$('spotifyStatus').textContent='That does not look like a Spotify track URL. Paste a link like open.spotify.com/track/…';return;}
+ $('spotifyFrame').src='https://open.spotify.com/embed/track/'+id+'?utm_source=generator&theme=0';
+ $('embedBox').style.display='block'; $('openSpotify').style.display='block';
+ $('openSpotify').onclick=()=>window.open('https://open.spotify.com/track/'+id,'_blank','noopener,noreferrer');
+ $('spotifyStatus').textContent='Track preview loaded below. Playback availability depends on Spotify and your region/account.';
+}
+$('previewBtn').addEventListener('click',preview);
+$('spotify').addEventListener('keydown',e=>{if(e.key==='Enter')preview()});
+$('downloadBtn').addEventListener('click',()=>{
+ const raw=$('audioUrl').value.trim();
+ if(!raw){$('downloadStatus').textContent='Paste a direct, authorized audio-file URL first.';return;}
+ let u;try{u=new URL(raw);if(!['http:','https:'].includes(u.protocol))throw 0;}catch(e){$('downloadStatus').textContent='Please enter a valid http or https URL.';return;}
+ const a=document.createElement('a');a.href=u.href;
+ const name=$('filename').value.trim();
+ if(name)a.download=name;else a.download='';
+ a.target='_blank';a.rel='noopener noreferrer';document.body.appendChild(a);a.click();a.remove();
+ $('downloadStatus').textContent='Download requested. If it opens in a tab, use the host page’s download control or long-press/save option.';
+});
+</script>
+</body>
+</html>
